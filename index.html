@@ -1,1 +1,112 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>COLOR URUFU RELAY</title>
+<style>
+body {
+  margin: 0;
+  padding: 30px 18px;
+  background: #0b1020;
+  color: #f5f5ff;
+  font-family: sans-serif;
+  text-align: center;
+}
+main { max-width: 450px; margin: auto; }
+h1 { color: #a9d8ed; font-size: 27px; }
+.panel {
+  margin-top: 25px;
+  padding: 22px;
+  background: #172139;
+  border: 1px solid #526580;
+  border-radius: 18px;
+}
+input, button {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 13px;
+  margin: 8px 0;
+  border-radius: 10px;
+  font-size: 16px;
+}
+input {
+  background: #0b1020;
+  color: white;
+  border: 1px solid #64748b;
+}
+label {
+  display: block;
+  text-align: left;
+  padding: 12px;
+  margin: 8px 0;
+  border: 1px solid #64748b;
+  border-radius: 10px;
+}
+label input { width: auto; }
+button {
+  background: #a9d8ed;
+  border: none;
+  color: #10172a;
+  font-weight: bold;
+}
+.note { color: #b8c4d9; font-size: 13px; line-height: 1.8; }
+</style>
+</head>
+<body>
+<main>
+  <p>☾ ✦ 🐺 ✦ ☾</p>
+  <p>URUFU PRESENTS</p>
+  <h1>COLOR URUFU RELAY</h1>
+  <p>歌を聴いて、人狼を見抜け。</p>
 
+  <section class="panel">
+    <h2>投票ページ</h2>
+    <p>ColorSingで使用している名前を入力してください。</p>
+
+    <form id="voteForm">
+      <input id="username" placeholder="ColorSingの名前" required>
+      <p>人狼だと思うライバーを選んでね。</p>
+      <div id="performers"></div>
+      <button type="submit">投票する</button>
+    </form>
+
+    <p id="message" class="note"></p>
+    <p class="note">
+      投票開始：リレー配信終了後<br>
+      投票締切：翌日23:59<br>
+      正解者には正解賞、間違えた方にも参加賞を用意！
+    </p>
+  </section>
+</main>
+
+<script>
+const performers = [
+  "出演ライバー①",
+  "出演ライバー②",
+  "出演ライバー③",
+  "出演ライバー④",
+  "出演ライバー⑤"
+];
+
+const list = document.getElementById("performers");
+
+performers.forEach(name => {
+  const label = document.createElement("label");
+  const radio = document.createElement("input");
+  radio.type = "radio";
+  radio.name = "suspect";
+  radio.value = name;
+  radio.required = true;
+  label.append(radio, " " + name);
+  list.appendChild(label);
+});
+
+document.getElementById("voteForm").addEventListener("submit", event => {
+  event.preventDefault();
+  document.getElementById("message").textContent =
+    "表示確認用です。投票の保存機能はまだ接続されていません。";
+});
+</script>
+</body>
+</html>
